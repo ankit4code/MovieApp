@@ -11,6 +11,8 @@ import com.eb.movieapp.databinding.MovieListBinding
 
 class MovieAdapter : ListAdapter<Movie, RecyclerView.ViewHolder>(MovieDiffCallback()) {
 
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MovieViewHolder(MovieListBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false))
@@ -22,8 +24,7 @@ class MovieAdapter : ListAdapter<Movie, RecyclerView.ViewHolder>(MovieDiffCallba
     }
 
     class MovieViewHolder(
-        private val binding: MovieListBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+        private val binding: MovieListBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener {
                 binding.movie?.let { movie ->
@@ -32,10 +33,7 @@ class MovieAdapter : ListAdapter<Movie, RecyclerView.ViewHolder>(MovieDiffCallba
             }
         }
 
-        private fun navigateToPlant(
-            movie: Movie,
-            view: View
-        ) {
+        private fun navigateToPlant(movie: Movie, view: View) {
             /*val direction =
                 HomeViewPagerFragmentDirections.actionViewPagerFragmentToPlantDetailFragment(
                     plant.plantId

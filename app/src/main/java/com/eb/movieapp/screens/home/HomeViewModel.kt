@@ -11,17 +11,22 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HomeViewModel internal constructor(val apiService: ApiService) : BaseViewModel(){
+class HomeViewModel internal constructor(private val apiService: ApiService) : BaseViewModel(){
 
     private val _movieDAO: MutableLiveData<MovieDAO> = MutableLiveData()
     val movieLiveData : LiveData<MovieDAO> get() = _movieDAO
 
-    fun getMovies(){
-        launch {
+    init {
+        getMovies(1)
+    }
 
+    fun getMovies(page:Int){
+        launch {
+            changeState(load = true)
             val movieDAO = withContext(Dispatchers.IO) {
-                apiService.getMovies(API_KEY,1)
+                apiService.getMovies(API_KEY,page)
             }
+            changeState(load = false)
             _movieDAO.postValue(movieDAO)
         }
     }

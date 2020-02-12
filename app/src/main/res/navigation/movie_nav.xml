@@ -6,5 +6,17 @@
     <fragment
         android:id="@+id/home2"
         android:name="com.eb.movieapp.screens.home.Home"
-        android:label="Home" />
+        android:label="Home" >
+        <action
+            android:id="@+id/action_home2_to_movieDetail"
+            app:destination="@id/movieDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetail"
+        android:name="com.eb.movieapp.screens.detail.MovieDetail"
+        android:label="MovieDetail" >
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
 </navigation>
